@@ -1,0 +1,6 @@
+[client-server]
+port = {{ db_port }}
+socket = /var/run/mysqld/mysqld.sock
+
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mariadb.conf.d/

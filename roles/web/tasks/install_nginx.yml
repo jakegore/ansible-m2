@@ -8,15 +8,32 @@
 - name: Copy Nginx Configuration
   template:
     src: magento.conf.j2
-    dest: /var/nginx/sites-available/magento.conf
+    dest: /etc/nginx/sites-available/magento.conf
 
 - name: Enable Configuration
   file:
-    src: /var/nginx/sites-available/magento.conf
-    dest: /var/nginx/sites-enabled/magento.conf
+    src: /etc/nginx/sites-available/magento.conf
+    dest: /etc/nginx/sites-enabled/magento.conf
     owner: www-data
     group: www-data
     state: link
+
+- name: Disable Default Configuration
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Stop Apache
+  service:
+    name: apache2
+    state: stopped
+    enabled: no
+
+- name: Stop Apache Cache Clean
+  service:
+    name: apache-htcacheclean
+    state: stopped
+    enabled: no
 
 - name: Start Nginx Service
   service:

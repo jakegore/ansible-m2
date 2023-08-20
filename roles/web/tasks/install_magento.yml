@@ -1,5 +1,10 @@
 ---
 
+- name: Clean /var/www/html
+  file:
+    path: /var/www/html
+    state: absent
+
 - name: Clone repository
   git:
     repo: "{{ repository }}"

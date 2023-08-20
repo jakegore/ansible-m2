@@ -1,3 +1,4 @@
 ---
 
-repository: https://github.com/jakegore/den.git
+php_version: 8.2
+repository: https://github.com/magento/magento2.git

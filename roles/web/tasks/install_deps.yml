@@ -1,34 +1,31 @@
 ---
 
+- name: Add PHP PPA repository
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+
 - name: Install Dependencies
   apt:
     name: "{{ item }}"
     state: present
   with_items:
-    - vim
-    - php8.1
-    - php8.1-bcmath
-    - php8.1-ctype
-    - php8.1-curl
-    - php8.1-dom
-    - php8.1-fileinfo
-    - php8.1-filter
-    - php8.1-gd
-    - php8.1-hash
-    - php8.1-iconv
-    - php8.1-intl
-    - php8.1-json
-    - php8.1-libxml
-    - php8.1-mbstring
-    - php8.1-openssl
-    - php8.1-pcre
-    - php8.1-pdo_mysql
-    - php8.1-simplexml
-    - php8.1-soap
-    - php8.1-sockets
-    - php8.1-sodium
-    - php8.1-tokenizer
-    - php8.1-xmlwriter
-    - php8.1-xsl
-    - php8.1-zip
-    - php8.1-zlib
+    - php{{ php_version }}
+    - php{{ php_version }}-fpm
+    - php{{ php_version }}-bcmath
+    - php{{ php_version }}-ctype
+    - php{{ php_version }}-curl
+    - php{{ php_version }}-dom
+    - php{{ php_version }}-fileinfo
+    - php{{ php_version }}-gd
+    - php{{ php_version }}-iconv
+    - php{{ php_version }}-intl
+    - php{{ php_version }}-mbstring
+    - php{{ php_version }}-mysql
+    - php{{ php_version }}-simplexml
+    - php{{ php_version }}-soap
+    - php{{ php_version }}-sockets
+    - php{{ php_version }}-tokenizer
+    - php{{ php_version }}-xmlwriter
+    - php{{ php_version }}-xsl
+    - php{{ php_version }}-zip
