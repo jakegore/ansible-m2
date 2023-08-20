@@ -5,6 +5,6 @@ upstream fastcgi_backend {
 server {
   listen 80;
   server_name {{ domain }} www.{{ domain }};
-  set $MAGE_ROOT /var/www/html/magento2;
-  # include /var/www/html/magento2/nginx.conf.sample;
+  set $MAGE_ROOT /var/www/html;
+  include /var/www/html/nginx.conf.sample;
 }
