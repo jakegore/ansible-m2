@@ -9,6 +9,7 @@ This playbook will provision a new Magento 2 instance.
 1. Ensure that the values in the following files are correct:
 
 - `hosts`
+- `group_vars/all`
 - `group_vars/dbservers`
 - `group_vars/webservers`
 
