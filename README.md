@@ -10,10 +10,21 @@ This playbook will provision a new Magento 2 instance.
 
 - `hosts`
 - `group_vars/all`
-- `group_vars/dbservers`
 - `group_vars/webservers`
 
 2. Run `ansible-playbook -i hosts site.yml`
+
+## Todo
+
+- [X] Run Magento install commands
+- [ ] Run apt update before anything
+- [ ] Add custom admin URL
+- [ ] Add proper Nginx configuration
+- [ ] Add in Varnish
+- [ ] Set up magento user on system instead of root
+- [ ] Set up correct DB & Search host during Magento install
+- [ ] Set up firewall
+- [ ] Improve Opensearch tasks
 
 ---
 

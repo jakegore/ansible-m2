@@ -5,7 +5,44 @@
     path: /var/www/html
     state: absent
 
-- name: Clone repository
-  git:
-    repo: "{{ repository }}"
-    dest: /var/www/html
+- name: Copy Magento Credentials
+  template:
+    src: auth.json.j2
+    dest: /root/.config/composer/auth.json
+
+- name: Create Magento Project
+  composer:
+    command: create-project
+    arguments: --repository-url=https://repo.magento.com/ magento/project-community-edition /var/www/html
+    working_dir: /var/www
+    prefer_dist: true
+
+- name: Remove Magento Credentials
+  file:
+    path: /root/.config/composer/auth.json
+    state: absent
+
+- name: Install Magento
+  shell: php bin/magento setup:install \
+    --base-url=http://{{ domain }} \
+    --db-host=localhost \
+    --db-name={{ db_name }} \
+    --db-user={{ db_username }} \
+    --db-password={{ db_password }} \
+    --elasticsearch-host=localhost \
+    --elasticsearch-port=9200 \
+    --elasticsearch-enable-auth=1 \
+    --elasticsearch-username=admin \
+    --elasticsearch-password=admin \
+    --admin-firstname={{ admin_first_name }} \
+    --admin-lastname={{ admin_last_name }} \
+    --admin-email={{ admin_email }} \
+    --admin-user={{ admin_username }} \
+    --admin-password={{ admin_password }} \
+    --language={{ language }} \
+    --currency={{ currency }} \
+    --timezone={{ timezone }} \
+    --use-rewrites={{ use_rewrites }}
+  args:
+    chdir: /var/www/html
+    creates: /var/www/html/app/etc/env.php

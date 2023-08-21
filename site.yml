@@ -6,14 +6,20 @@
   roles:
     - common
 
-- name: Web Setup
-  hosts: webservers
-  remote_user: root
-  roles:
-    - web
-
 - name: DB Setup
   hosts: dbservers
   remote_user: root
   roles:
     - db
+
+- name: Search Setup
+  hosts: searchservers
+  remote_user: root
+  roles:
+    - search
+
+- name: Web Setup
+  hosts: webservers
+  remote_user: root
+  roles:
+    - web

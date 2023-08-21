@@ -1,4 +1,4 @@
 ---
 
-# - include: install_deps.yml
+- include: install_deps.yml
 - include: install_db.yml

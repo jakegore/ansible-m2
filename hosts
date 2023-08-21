@@ -3,3 +3,6 @@ web1
 
 [dbservers]
 db1
+
+[searchservers]
+search1

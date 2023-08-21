@@ -1,0 +1,37 @@
+---
+
+- name: Install Requirements
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - lsb-release
+    - ca-certificates
+    - curl
+    - gnupg2
+
+- name: Add GPG Key
+  shell: curl -o- https://artifacts.opensearch.org/publickeys/opensearch.pgp | sudo gpg --dearmor --batch --yes -o /usr/share/keyrings/opensearch-keyring
+
+- name: Create Repository
+  shell: echo "deb [signed-by=/usr/share/keyrings/opensearch-keyring] https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/apt stable main" > /etc/apt/sources.list.d/opensearch-2.x.list
+
+- name: Install Opensearch
+  apt:
+    name: opensearch
+    state: present
+    update_cache: true
+
+- name: Allow HTTP Opensearch
+  lineinfile:
+    path: /etc/opensearch/opensearch.yml
+    line: "plugins.security.disabled: true"
+    state: present
+    create: yes
+    regexp: "^plugins.security.disabled: true$"
+
+- name: Start Opensearch Service
+  service:
+    name: opensearch
+    state: started
+    enabled: yes

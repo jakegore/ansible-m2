@@ -1,4 +1,16 @@
 ---
 
 php_version: 8.2
-repository: https://github.com/magento/magento2.git
+
+magento_repo_username: XXX
+magento_repo_password: XXX
+
+admin_first_name: admin
+admin_last_name: admin
+admin_email: admin@admin.com
+admin_username: admin
+admin_password: admin123
+language: en_GB
+currency: GBP
+timezone: Europe/London
+use_rewrites: 1

@@ -1,5 +1,5 @@
 ---
 
 - include: install_deps.yml
-- include: install_nginx.yml
 - include: install_magento.yml
+- include: install_nginx.yml
